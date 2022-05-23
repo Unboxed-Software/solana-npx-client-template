@@ -1,13 +1,13 @@
 {
   "name": "solana-token-client",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.8",
+  "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test-command"
   },
   "keywords": [],
-  "author": "",
+  "author": "test",
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.8.0",
@@ -17,5 +17,10 @@
     "@solana/spl-token": "^0.2.0",
     "@solana/web3.js": "^1.43.1",
     "dotenv": "^16.0.1"
+  },
+  
+  "bin": {
+    "test-command": "./bin/cli.js"
   }
+  
 }
