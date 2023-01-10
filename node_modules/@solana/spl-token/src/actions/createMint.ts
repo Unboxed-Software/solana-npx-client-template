@@ -1,16 +1,8 @@
-import {
-    ConfirmOptions,
-    Connection,
-    Keypair,
-    PublicKey,
-    sendAndConfirmTransaction,
-    Signer,
-    SystemProgram,
-    Transaction,
-} from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '../constants';
-import { createInitializeMintInstruction } from '../instructions/index';
-import { getMinimumBalanceForRentExemptMint, MINT_SIZE } from '../state/index';
+import type { ConfirmOptions, Connection, PublicKey, Signer } from '@solana/web3.js';
+import { Keypair, sendAndConfirmTransaction, SystemProgram, Transaction } from '@solana/web3.js';
+import { TOKEN_PROGRAM_ID } from '../constants.js';
+import { createInitializeMint2Instruction } from '../instructions/initializeMint2.js';
+import { getMinimumBalanceForRentExemptMint, MINT_SIZE } from '../state/mint.js';
 
 /**
  * Create and initialize a new mint
@@ -46,7 +38,7 @@ export async function createMint(
             lamports,
             programId,
         }),
-        createInitializeMintInstruction(keypair.publicKey, decimals, mintAuthority, freezeAuthority, programId)
+        createInitializeMint2Instruction(keypair.publicKey, decimals, mintAuthority, freezeAuthority, programId)
     );
 
     await sendAndConfirmTransaction(connection, transaction, [payer, keypair], confirmOptions);
