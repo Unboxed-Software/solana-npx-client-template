@@ -38,11 +38,14 @@ async function airdropSolIfNeeded(
 
     const latestBlockHash = await connection.getLatestBlockhash()
 
-    await connection.confirmTransaction({
-      blockhash: latestBlockHash.blockhash,
-      lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-      signature: airdropSignature,
-    })
+    await connection.confirmTransaction(
+      {
+        blockhash: latestBlockHash.blockhash,
+        lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+        signature: airdropSignature,
+      },
+      "finalized"
+    )
 
     const newBalance = await connection.getBalance(signer.publicKey)
     console.log("New balance is", newBalance / web3.LAMPORTS_PER_SOL)
